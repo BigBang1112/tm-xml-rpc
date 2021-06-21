@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>BigBang1112.TmXmlRpc</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Crc32.NET" Version="1.2.0" />
+		<PackageReference Include="YamlDotNet" Version="11.2.0" />
+	</ItemGroup>
+
+</Project>
