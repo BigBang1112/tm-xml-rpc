@@ -10,13 +10,13 @@ using Force.Crc32;
 namespace BigBang1112.TmXmlRpc.Requests
 {
     [XmlRoot("root")]
-    public class OpenSessionSecure : Request<RequestGameMP>
+    public class OpenSessionSecure : Request<RequestGameMp>
     {
         public override string Name => "OpenSessionSecure";
 
         public string Password { get; set; }
 
-        public OpenSessionSecure(RequestGameMP game, string login, string password) : base(game, 0, 4)
+        public OpenSessionSecure(RequestGameMp game, string login, string password) : base(game, 0, 4)
         {
             Author.Login = login;
             Password = password;

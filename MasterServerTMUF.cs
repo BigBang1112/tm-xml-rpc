@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace BigBang1112.TmXmlRpc
 {
-    public class MasterServerTMUF : MasterServer
+    public class MasterServerTmuf : MasterServer<RequestGameTmuf>
     {
+        public MasterServerTmuf() : base(new RequestGameTmuf())
+        {
+
+        }
+
         public Uri GetCampaignScoresUrl(string campaign, int zoneId)
         {
-            return new Uri($"https://scores.trackmaniaforever.com/scores2/{campaign}/{zoneId}{zoneId}.gz");
+            return new Uri($"https://scores.trackmaniaforever.com/scores4/{campaign}/{zoneId}{zoneId}.gz");
         }
     }
 }

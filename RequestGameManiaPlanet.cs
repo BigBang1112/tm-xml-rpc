@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace BigBang1112.TmXmlRpc
 {
     [XmlRoot("game")]
-    public class RequestGameMP : RequestGame
+    public class RequestGameManiaPlanet : RequestGame
     {
         [XmlElement("build")]
         public string Build { get; init; }
@@ -21,7 +21,7 @@ namespace BigBang1112.TmXmlRpc
 
         public override Uri MasterServerUri => new("http://relay01.v04.maniaplanet.com/game/request.php");
 
-        public RequestGameMP(string title)
+        public RequestGameManiaPlanet(string title)
         {
             Name = "ManiaPlanet";
             Version = "3.3.0";
@@ -32,7 +32,7 @@ namespace BigBang1112.TmXmlRpc
             Dedicated = 0;
         }
 
-        public RequestGameMP() : this(null)
+        public RequestGameManiaPlanet() : this(null)
         {
 
         }
