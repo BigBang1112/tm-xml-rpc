@@ -20,7 +20,7 @@ namespace BigBang1112.TmXmlRpc.Requests
             
         }
 
-        internal GetLeagues() : this(null)
+        protected GetLeagues() : this(null)
         {
 
         }

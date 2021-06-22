@@ -91,7 +91,7 @@ namespace BigBang1112.TmXmlRpc.Requests
             {
                 if (DownloadUrl == null) return null;
 
-                var response = await MasterServer<RequestGameTmuf>.Client.GetAsync(DownloadUrl);
+                var response = await MasterServer.Client.GetAsync(DownloadUrl);
 
                 response.EnsureSuccessStatusCode();
 
@@ -105,7 +105,7 @@ namespace BigBang1112.TmXmlRpc.Requests
                 if (DownloadUrl == null) return null;
 
                 var request = new HttpRequestMessage(HttpMethod.Head, DownloadUrl);
-                var response = await MasterServer<RequestGameTmuf>.Client.SendAsync(request);
+                var response = await MasterServer.Client.SendAsync(request);
 
                 response.EnsureSuccessStatusCode();
 
