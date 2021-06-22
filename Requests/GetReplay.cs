@@ -9,14 +9,14 @@ using System.Xml.Serialization;
 namespace BigBang1112.TmXmlRpc.Requests
 {
     [XmlRoot("root")]
-    public class GetReplay : Request<RequestGameTMUF>
+    public class GetReplay : Request<RequestGameTmuf>
     {
         public override string Name => "GetReplay";
 
         public string MapUid { get; set; }
         public string Login { get; set; }
 
-        public GetReplay(RequestGameTMUF game, string mapUid, string login) : base(game, null, null)
+        public GetReplay(RequestGameTmuf game, string mapUid, string login) : base(game, null, null)
         {
             MapUid = mapUid;
             Login = login;

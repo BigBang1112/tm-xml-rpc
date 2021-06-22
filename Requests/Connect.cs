@@ -5,11 +5,11 @@ using System.Xml.Serialization;
 namespace BigBang1112.TmXmlRpc.Requests
 {
     [XmlRoot("root")]
-    public class Connect : Request<RequestGameMP>
+    public class Connect : Request<RequestGameManiaPlanet>
     {
         public override string Name => "Connect";
 
-        public Connect(RequestGameMP game, string login, int sessionId) : base(game, 0, 4)
+        public Connect(RequestGameManiaPlanet game, string login, int sessionId) : base(game, 0, 4)
         {
             Author.Login = login;
             Author.Session = sessionId;

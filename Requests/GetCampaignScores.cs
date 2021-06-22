@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 namespace BigBang1112.TmXmlRpc.Requests
 {
     [XmlRoot("root")]
-    public class GetCampaignScores : Request<RequestGameTMUF>
+    public class GetCampaignScores : Request<RequestGameTmuf>
     {
         public override string Name => "GetCampaignScores";
 
@@ -21,7 +21,7 @@ namespace BigBang1112.TmXmlRpc.Requests
         public DateTimeOffset S { get; set; }
         public int T { get; set; }
 
-        public GetCampaignScores(RequestGameTMUF game, string campaign, string zone) : base(game, null, null)
+        public GetCampaignScores(RequestGameTmuf game, string campaign, string zone) : base(game, null, null)
         {
             Campaign = campaign;
             Zone = zone;
@@ -91,7 +91,7 @@ namespace BigBang1112.TmXmlRpc.Requests
             {
                 if (DownloadUrl == null) return null;
 
-                var response = await MasterServer.Client.GetAsync(DownloadUrl);
+                var response = await MasterServer<RequestGameTmuf>.Client.GetAsync(DownloadUrl);
 
                 response.EnsureSuccessStatusCode();
 
@@ -105,7 +105,7 @@ namespace BigBang1112.TmXmlRpc.Requests
                 if (DownloadUrl == null) return null;
 
                 var request = new HttpRequestMessage(HttpMethod.Head, DownloadUrl);
-                var response = await MasterServer.Client.SendAsync(request);
+                var response = await MasterServer<RequestGameTmuf>.Client.SendAsync(request);
 
                 response.EnsureSuccessStatusCode();
 

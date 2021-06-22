@@ -9,14 +9,14 @@ using System.Xml.Serialization;
 namespace BigBang1112.TmXmlRpc.Requests
 {
     [XmlRoot("root")]
-    public class RequestAllowed : Request<RequestGameTMUF>
+    public class RequestAllowed : Request<RequestGameTmuf>
     {
         public override string Name => "RequestAllowed";
 
         public string RequestName { get; set; }
         public string Uid { get; set; }
 
-        public RequestAllowed(RequestGameTMUF game, string requestName, string uid) : base(game, null, null)
+        public RequestAllowed(RequestGameTmuf game, string requestName, string uid) : base(game, null, null)
         {
             RequestName = requestName;
             Uid = uid;

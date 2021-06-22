@@ -19,7 +19,7 @@ namespace BigBang1112.TmXmlRpc
         [XmlElement("dedicated")]
         public int Dedicated { get; init; }
 
-        public override Uri MasterServerUri => new("http://relay01.v04.maniaplanet.com/game/request.php");
+        public override Uri MasterServerUri { get; } = new("http://relay01.v04.maniaplanet.com/game/request.php");
 
         public RequestGameManiaPlanet(string title)
         {

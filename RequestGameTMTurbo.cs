@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace BigBang1112.TmXmlRpc
 {
     [XmlRoot("game")]
-    public class RequestGameTmTurbo : RequestGameMp
+    public class RequestGameTmTurbo : RequestGameManiaPlanet
     {
         [XmlElement("beta")]
         public int Beta { get; init; }
