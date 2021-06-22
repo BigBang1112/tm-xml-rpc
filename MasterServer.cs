@@ -32,5 +32,23 @@ namespace BigBang1112.TmXmlRpc
         {
             return await new GetLeagues<T>(Game).RequestAsync();
         }
+
+        public async Task<GetMapLeaderBoardSummaries<T>.Response>
+            GetMapLeaderBoardSummariesAsync(IList<GetMapLeaderBoardSummaries<T>.Map> maps)
+        {
+            return await new GetMapLeaderBoardSummaries<T>(Game, maps).RequestAsync();
+        }
+
+        public async Task<GetMapLeaderBoardSummaries<T>.Response>
+            GetMapLeaderBoardSummariesAsync(string mapUid, string zone = "World", string type = "")
+        {
+            return await new GetMapLeaderBoardSummaries<T>(Game, mapUid, zone, type).RequestAsync();
+        }
+
+        public async Task<GetMapLeaderBoard<T>.Response>
+            GetMapLeaderBoardAsync(string mapUid, string zone = "World", string type = "", int offset = 0, int count = 10)
+        {
+            return await new GetMapLeaderBoard<T>(Game, mapUid, zone, type, offset, count).RequestAsync();
+        }
     }
 }

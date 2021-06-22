@@ -115,76 +115,22 @@ namespace BigBang1112.TmXmlRpc.Requests
                 Type = type;
                 S = "MapRecord";
             }
-        }
+        }        
 
-        public class Leaderboard : IReadOnlyCollection<LeaderboardPlayer>
+        public class Response : ResponseBase, IReadOnlyCollection<MapLeaderBoard>
         {
-            public int R { get; set; }
-            public string C { get; set; }
-            public string MapUid { get; set; }
-            public string Zone { get; set; }
-            public string S { get; set; }
-            public int D { get; set; }
-            public (int time, int count)[] Times { get; set; }
-            public int N { get; set; }
-            public ReadOnlyCollection<LeaderboardPlayer> Records { get; }
-            public int TotalCount { get; set; }
+            public ReadOnlyCollection<MapLeaderBoard> Leaderboards { get; private set; }
 
-            public int Count => Records.Count;
+            public int Count => Leaderboards.Count;
 
-            public Leaderboard(IList<LeaderboardPlayer> records)
+            public Response()
             {
-                Records = new ReadOnlyCollection<LeaderboardPlayer>(records);
+                Leaderboards = new ReadOnlyCollection<MapLeaderBoard>(new List<MapLeaderBoard>());
             }
-
-            public override string ToString()
-            {
-                return $"Leaderboard [{MapUid}]";
-            }
-
-            public IEnumerator<LeaderboardPlayer> GetEnumerator()
-            {
-                return Records.GetEnumerator();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return Records.GetEnumerator();
-            }
-        }
-
-        public class LeaderboardPlayer
-        {
-            public int Rank { get; set; }
-            public TimeSpan Time { get; set; }
-            public string Login { get; set; }
-            public string Nickname { get; set; }
-            public string FileName { get; set; }
-            public string ReplayUrl { get; set; }
-
-            public override string ToString()
-            {
-                return $"{Rank}) {Time.ToStringTM()} by {Nickname}";
-            }
-
-            public async Task<DateTimeOffset?> GetTimestampAsync()
-            {
-                var request = new HttpRequestMessage(HttpMethod.Head, ReplayUrl);
-                var response = await MasterServer.Client.SendAsync(request);
-                response.EnsureSuccessStatusCode();
-                return response.Content.Headers.LastModified;
-            }
-        }
-
-        public class Response : ResponseBase, IReadOnlyCollection<Leaderboard>
-        {
-            private ReadOnlyCollection<Leaderboard> leaderboards;
-
-            public int Count => leaderboards.Count;
 
             protected override void ReadContentXml(XmlReader reader)
             {
-                var lbs = new List<Leaderboard>();
+                var lbs = new List<MapLeaderBoard>();
 
                 while (reader.IsStartElement())
                 {
@@ -216,7 +162,7 @@ namespace BigBang1112.TmXmlRpc.Requests
                     }
 
                     var leaderboard = Convert.FromBase64String(reader.ReadElementContentAsString("t", ""));
-                    var records = new List<LeaderboardPlayer>();
+                    var records = new List<MapLeaderBoardPlayer>();
 
                     using (var ms = new MemoryStream(leaderboard))
                     using (var rr = new ResponseReader(ms))
@@ -225,7 +171,7 @@ namespace BigBang1112.TmXmlRpc.Requests
 
                         for (var i = 0; i < numRecords; i++)
                         {
-                            records.Add(new LeaderboardPlayer
+                            records.Add(new MapLeaderBoardPlayer
                             {
                                 Rank = rr.ReadInt32(),
                                 Time = TimeSpan.FromMilliseconds(rr.ReadInt32()),
@@ -239,12 +185,12 @@ namespace BigBang1112.TmXmlRpc.Requests
 
                     var n = reader.ReadElementContentAsInt("n", "");
 
-                    lbs.Add(new Leaderboard(records)
+                    lbs.Add(new MapLeaderBoard(records)
                     {
                         R = r,
                         C = c,
-                        MapUid = mapUid,
                         Zone = zone,
+                        MapUid = mapUid,
                         S = s,
                         D = d,
                         Times = times,
@@ -255,17 +201,17 @@ namespace BigBang1112.TmXmlRpc.Requests
                     reader.ReadEndElement();
                 }
 
-                leaderboards = new ReadOnlyCollection<Leaderboard>(lbs);
+                Leaderboards = new ReadOnlyCollection<MapLeaderBoard>(lbs);
             }
 
-            public IEnumerator<Leaderboard> GetEnumerator()
+            public IEnumerator<MapLeaderBoard> GetEnumerator()
             {
-                return leaderboards.GetEnumerator();
+                return Leaderboards.GetEnumerator();
             }
 
             IEnumerator IEnumerable.GetEnumerator()
             {
-                return leaderboards.GetEnumerator();
+                return Leaderboards.GetEnumerator();
             }
         }
     }

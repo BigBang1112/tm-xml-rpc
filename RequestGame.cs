@@ -17,9 +17,16 @@ namespace BigBang1112.TmXmlRpc
 
         public abstract Uri MasterServerUri { get; }
 
-        public RequestGame()
+        protected RequestGame()
         {
             Lang = "en";
+        }
+
+        public RequestGame(string name, string version, string lang = "en") : this()
+        {
+            Name = name;
+            Version = version;
+            Lang = lang;
         }
 
         public override string ToString()
