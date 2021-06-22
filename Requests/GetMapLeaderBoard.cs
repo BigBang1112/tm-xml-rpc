@@ -21,6 +21,7 @@ namespace BigBang1112.TmXmlRpc.Requests
 
         [XmlElement("f")]
         public int Offset { get; init; }
+
         [XmlElement("c")]
         public string C { get; init; }
         [XmlElement("m")]
@@ -28,15 +29,16 @@ namespace BigBang1112.TmXmlRpc.Requests
         [XmlElement("z")]
         public string Zone { get; init; }
         [XmlElement("t")]
-        public string Type { get; init; }
+        public string Context { get; init; }
         [XmlElement("s")]
         public string S { get; init; }
 
-        public GetMapLeaderBoard(T game, string mapUid, string zone = "World", string type = "", int offset = 0, int count = 10) : base(game)
+        public GetMapLeaderBoard(T game, string mapUid, string context = "", string zone = "World",
+            int offset = 0, int count = 10) : base(game)
         {
             MapUid = mapUid;
             Zone = zone;
-            Type = type;
+            Context = context;
 
             C = string.Empty;
             S = "MapRecord";
@@ -45,7 +47,7 @@ namespace BigBang1112.TmXmlRpc.Requests
             Count = count;
         }
 
-        protected GetMapLeaderBoard() : this(null, null, null, null)
+        protected GetMapLeaderBoard() : this(null, null)
         {
 
         }
@@ -63,7 +65,7 @@ namespace BigBang1112.TmXmlRpc.Requests
             writer.WriteElementString("c", C);
             writer.WriteElementString("m", MapUid);
             writer.WriteElementString("z", Zone);
-            writer.WriteElementString("t", Type);
+            writer.WriteElementString("t", Context);
             writer.WriteElementString("s", S);
         }      
 

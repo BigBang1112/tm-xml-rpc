@@ -40,15 +40,15 @@ namespace BigBang1112.TmXmlRpc
         }
 
         public async Task<GetMapLeaderBoardSummaries<T>.Response>
-            GetMapLeaderBoardSummariesAsync(string mapUid, string zone = "World", string type = "")
+            GetMapLeaderBoardSummariesAsync(string mapUid, string context = "", string zone = "World")
         {
-            return await new GetMapLeaderBoardSummaries<T>(Game, mapUid, zone, type).RequestAsync();
+            return await new GetMapLeaderBoardSummaries<T>(Game, mapUid, context, zone).RequestAsync();
         }
 
         public async Task<GetMapLeaderBoard<T>.Response>
-            GetMapLeaderBoardAsync(string mapUid, string zone = "World", string type = "", int offset = 0, int count = 10)
+            GetMapLeaderBoardAsync(string mapUid, string context = "", string zone = "World", int offset = 0, int count = 10)
         {
-            return await new GetMapLeaderBoard<T>(Game, mapUid, zone, type, offset, count).RequestAsync();
+            return await new GetMapLeaderBoard<T>(Game, mapUid, context, zone, offset, count).RequestAsync();
         }
     }
 }

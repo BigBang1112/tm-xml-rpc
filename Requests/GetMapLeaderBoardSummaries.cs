@@ -28,8 +28,8 @@ namespace BigBang1112.TmXmlRpc.Requests
             Maps = new List<Map>(maps);
         }
 
-        public GetMapLeaderBoardSummaries(T game, string mapUid, string zone = "World", string type = "")
-            : this(game, new List<Map> { new Map(mapUid, zone, type) })
+        public GetMapLeaderBoardSummaries(T game, string mapUid, string context = "", string zone = "World")
+            : this(game, new List<Map> { new Map(mapUid, context, zone) })
         {
 
         }
@@ -75,7 +75,7 @@ namespace BigBang1112.TmXmlRpc.Requests
                             case nameof(Map.Zone):
                                 zElementName = property.GetCustomAttribute<XmlElementAttribute>().ElementName;
                                 break;
-                            case nameof(Map.Type):
+                            case nameof(Map.Context):
                                 tElementName = property.GetCustomAttribute<XmlElementAttribute>().ElementName;
                                 break;
                             case nameof(Map.S):
@@ -88,7 +88,7 @@ namespace BigBang1112.TmXmlRpc.Requests
                 writer.WriteElementString(cElementName + i, map.C);
                 writer.WriteElementString(mElementName + i, map.MapUid);
                 writer.WriteElementString(zElementName + i, map.Zone);
-                writer.WriteElementString(tElementName + i, map.Type);
+                writer.WriteElementString(tElementName + i, map.Context);
                 writer.WriteElementString(sElementName + i, map.S);
             }
         }
@@ -102,17 +102,17 @@ namespace BigBang1112.TmXmlRpc.Requests
             [XmlElement("z")]
             public string Zone { get; init; }
             [XmlElement("t")]
-            public string Type { get; init; }
+            public string Context { get; init; }
             [XmlElement("s")]
             public string S { get; init; }
 
-            public Map(string mapUid, string zone = "World", string type = "")
+            public Map(string mapUid, string context = "", string zone = "World")
             {
                 MapUid = mapUid;
+                Context = context;
                 Zone = zone;
 
                 C = string.Empty;
-                Type = type;
                 S = "MapRecord";
             }
         }        
@@ -137,7 +137,7 @@ namespace BigBang1112.TmXmlRpc.Requests
                     reader.ReadStartElement("s");
 
                     var r = reader.ReadElementContentAsInt("r", "");
-                    var c = reader.ReadElementContentAsString("c", "");
+                    var context = reader.ReadElementContentAsString("c", "");
                     var mapUid = reader.ReadElementContentAsString("m", "");
                     var zone = reader.ReadElementContentAsString("z", "");
                     var s = reader.ReadElementContentAsString("s", "");
@@ -188,14 +188,13 @@ namespace BigBang1112.TmXmlRpc.Requests
                     lbs.Add(new MapLeaderBoard(records)
                     {
                         R = r,
-                        C = c,
+                        Context = context,
                         Zone = zone,
                         MapUid = mapUid,
                         S = s,
                         D = d,
                         Times = times,
-                        N = n,
-                        TotalCount = times.Sum(x => x.count)
+                        TotalCount = n
                     });
 
                     reader.ReadEndElement();
