@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BigBang1112.TmXmlRpc
 {
-    public enum MasterServerTmTurbo
+    public enum MasterServerPlatform
     {
         PC,
         PS4,
