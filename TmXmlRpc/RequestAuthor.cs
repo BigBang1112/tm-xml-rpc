@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace BigBang1112.TmXmlRpc
+namespace TmXmlRpc
 {
     [XmlRoot("author")]
     public class RequestAuthor

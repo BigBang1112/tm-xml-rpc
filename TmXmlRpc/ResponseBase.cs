@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace BigBang1112.TmXmlRpc
+namespace TmXmlRpc
 {
     public abstract class ResponseBase
     {

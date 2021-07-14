@@ -1,11 +1,11 @@
-﻿using BigBang1112.TmXmlRpc.Requests;
+﻿using TmXmlRpc.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BigBang1112.TmXmlRpc
+namespace TmXmlRpc
 {
     public class MasterServerTm2 : MasterServer<RequestGameManiaPlanet>
     {

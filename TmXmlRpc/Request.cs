@@ -5,7 +5,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace BigBang1112.TmXmlRpc
+namespace TmXmlRpc
 {
     [XmlRoot("root")]
     public abstract class Request<T> : IXmlSerializable where T : RequestGame

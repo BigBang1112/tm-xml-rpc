@@ -4,8 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using TmEssentials;
 
-namespace BigBang1112.TmXmlRpc
+namespace TmXmlRpc
 {
     public class MapLeaderBoardPlayer
     {
@@ -18,7 +19,7 @@ namespace BigBang1112.TmXmlRpc
 
         public override string ToString()
         {
-            return $"{Rank}) {Time.ToStringTM()} by {Nickname}";
+            return $"{Rank}) {Time.ToStringTm()} by {Nickname}";
         }
 
         public async Task<DateTimeOffset?> GetTimestampAsync()

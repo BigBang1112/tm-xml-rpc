@@ -12,7 +12,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace BigBang1112.TmXmlRpc.Requests
+namespace TmXmlRpc.Requests
 {
     [XmlRoot("root")]
     public class GetMapLeaderBoardSummaries<T> : Request<T> where T : RequestGame

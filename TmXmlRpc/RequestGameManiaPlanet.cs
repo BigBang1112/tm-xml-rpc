@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace BigBang1112.TmXmlRpc
+namespace TmXmlRpc
 {
     [XmlRoot("game")]
     public class RequestGameManiaPlanet : RequestGame

@@ -1,6 +1,7 @@
 ﻿using System;
+using TmEssentials;
 
-namespace BigBang1112.TmXmlRpc
+namespace TmXmlRpc
 {
     public struct CampaignScoresRecord
     {
@@ -12,8 +13,8 @@ namespace BigBang1112.TmXmlRpc
         public override string ToString()
         {
             if (Nickname == null)
-                return Time.ToStringTM();
-            return $"{Time.ToStringTM()} by {Nickname}";
+                return Time.ToStringTm();
+            return $"{Time.ToStringTm()} by {Nickname}";
         }
     }
 }

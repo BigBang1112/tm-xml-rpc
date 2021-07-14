@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace BigBang1112.TmXmlRpc
+namespace TmXmlRpc
 {
     [XmlRoot("game")]
     public class RequestGameTmTurbo : RequestGameManiaPlanet

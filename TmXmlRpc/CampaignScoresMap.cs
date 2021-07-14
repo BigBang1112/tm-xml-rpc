@@ -2,7 +2,7 @@
 using System.Linq;
 using YamlDotNet.Serialization;
 
-namespace BigBang1112.TmXmlRpc
+namespace TmXmlRpc
 {
     public class CampaignScoresMap
     {

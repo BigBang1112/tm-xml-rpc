@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BigBang1112.TmXmlRpc
+namespace TmXmlRpc
 {
     public class MasterServerTmTurbo : MasterServer<RequestGameTmTurbo>
     {

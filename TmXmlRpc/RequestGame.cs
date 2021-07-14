@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace BigBang1112.TmXmlRpc
+namespace TmXmlRpc
 {
     public abstract class RequestGame
     {

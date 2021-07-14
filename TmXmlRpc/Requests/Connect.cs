@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BigBang1112.TmXmlRpc.Requests
+namespace TmXmlRpc.Requests
 {
     [XmlRoot("root")]
     public class Connect : Request<RequestGameManiaPlanet>

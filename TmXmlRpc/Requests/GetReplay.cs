@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BigBang1112.TmXmlRpc.Requests
+namespace TmXmlRpc.Requests
 {
     [XmlRoot("root")]
     public class GetReplay : Request<RequestGameTmuf>
