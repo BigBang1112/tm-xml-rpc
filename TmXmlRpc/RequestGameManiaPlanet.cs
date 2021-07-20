@@ -13,7 +13,7 @@ namespace TmXmlRpc
         [XmlElement("build")]
         public string Build { get; init; }
         [XmlElement("title")]
-        public string Title { get; init; }
+        public string Title { get; set; }
         [XmlElement("network")]
         public int Network { get; init; }
         [XmlElement("dedicated")]
