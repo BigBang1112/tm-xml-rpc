@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using Force.Crc32;
+using System.Net.Http;
 
 namespace TmXmlRpc.Requests
 {
@@ -27,6 +28,7 @@ namespace TmXmlRpc.Requests
 
         }
 
+        /// <exception cref="HttpRequestException"/>
         public async Task<Response> RequestAsync()
         {
             return await ProtectedRequestAsync<Response>();

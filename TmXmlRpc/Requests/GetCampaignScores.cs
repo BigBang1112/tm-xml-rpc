@@ -34,6 +34,7 @@ namespace TmXmlRpc.Requests
 
         }
 
+        /// <exception cref="HttpRequestException"/>
         public async Task<Response> RequestAsync()
         {
             return await ProtectedRequestAsync<Response>();

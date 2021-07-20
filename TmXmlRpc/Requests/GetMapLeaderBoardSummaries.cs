@@ -24,7 +24,7 @@ namespace TmXmlRpc.Requests
 
         public GetMapLeaderBoardSummaries(T game, IList<Map> maps) : base(game)
         {
-            B = 1;
+            B = 1; // 0 = only xml times
             Maps = new List<Map>(maps);
         }
 
@@ -39,6 +39,7 @@ namespace TmXmlRpc.Requests
 
         }
 
+        /// <exception cref="HttpRequestException"/>
         public async Task<Response> RequestAsync()
         {
             return await ProtectedRequestAsync<Response>();
