@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml;
@@ -41,20 +42,43 @@ namespace TmXmlRpc
             return str.ToString();
         }
 
+        /// <exception cref="HttpRequestException"/>
         protected async Task<TResponse> ProtectedRequestAsync<TResponse>() where TResponse : ResponseBase, new()
         {
-            var xml = await RequestXmlAsync();
+            using var stream = new MemoryStream();
+            await RequestXmlStreamAsync(stream);
             var response = new TResponse();
-            response.FromXml(xml);
+            response.FromXml(stream);
             return response;
         }
 
-        public async Task<string> RequestXmlAsync()
+
+        public async Task RequestXmlStreamAsync(Stream output)
         {
             var xml = ToXML();
-            var content = new StringContent(xml);
-            var response = await MasterServer.Client.PostAsync(Game.MasterServerUri, content);
-            return await response.Content.ReadAsStringAsync();
+
+            using var content = new StringContent(xml);
+            using var response = await MasterServer.Client.PostAsync(Game.MasterServerUri, content);
+
+            response.EnsureSuccessStatusCode();
+
+            using var stream = await response.Content.ReadAsStreamAsync();
+            await stream.CopyToAsync(output);
+
+            output.Seek(0, SeekOrigin.Begin);
+        }
+
+        /// <summary>
+        /// Requests the command and gives the XML response as a string.
+        /// </summary>
+        /// <returns>String containing XML data.</returns>
+        /// <exception cref="HttpRequestException"/>
+        public async Task<string> RequestXmlAsync()
+        {
+            using var stream = new MemoryStream();
+            await RequestXmlStreamAsync(stream);
+            using var reader = new StreamReader(stream);
+            return await reader.ReadToEndAsync();
         }
 
         XmlSchema IXmlSerializable.GetSchema()

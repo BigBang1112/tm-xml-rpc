@@ -11,11 +11,11 @@ namespace TmXmlRpc
         public string Name { get; private set; }
         public TimeSpan ExecutionTime { get; private set; }
         public string Message { get; private set; }
+        public int? ByteSize { get; private set; }
 
-        public void FromXml(string xml)
+        public void FromXml(XmlReader reader)
         {
-            using var sr = new StringReader(xml);
-            using var r = XmlReader.Create(sr);
+            var r = reader;
 
             r.ReadStartElement("r");
             r.ReadStartElement("r");
@@ -60,6 +60,23 @@ namespace TmXmlRpc
             executionTimeString = executionTimeString["execution time : ".Length..][0..^2];
             ExecutionTime = TimeSpan.FromSeconds(double.Parse(executionTimeString, CultureInfo.InvariantCulture));
             r.ReadEndElement();
+        }
+
+        public void FromXml(Stream stream)
+        {
+            ByteSize = (int)stream.Length;
+
+            using var r = XmlReader.Create(stream);
+            FromXml(r);
+        }
+
+        public void FromXml(string xml)
+        {
+            ByteSize = xml.Length;
+
+            using var sr = new StringReader(xml);
+            using var r = XmlReader.Create(sr);
+            FromXml(r);
         }
 
         protected abstract void ReadContentXml(XmlReader reader);
