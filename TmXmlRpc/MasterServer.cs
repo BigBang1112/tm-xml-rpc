@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using TmXmlRpc.Requests;
@@ -14,8 +16,22 @@ namespace TmXmlRpc
 
         static MasterServer()
         {
-            Client = new HttpClient();
+            var handler = new HttpClientHandler()
+            {
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            };
+
+            Client = new HttpClient(handler);
             Client.DefaultRequestHeaders.UserAgent.ParseAdd("TmXmlRpc / 0.1 by BigBang1112 (used fairly)");
+            Client.DefaultRequestHeaders.AcceptEncoding.ParseAdd("gzip");
+            Client.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue
+            {
+                NoCache = true,
+                NoStore = true,
+                MustRevalidate = true,
+                MaxAge = TimeSpan.Zero
+            };
+            Client.DefaultRequestHeaders.Pragma.Add(new NameValueHeaderValue("no-cache"));
         }
     }
 
