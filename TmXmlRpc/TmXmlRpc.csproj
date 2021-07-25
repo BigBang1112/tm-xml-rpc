@@ -6,11 +6,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Crc32.NET" Version="1.2.0" />
+		<PackageReference Include="TmEssentials" Version="1.0.0" />
 		<PackageReference Include="YamlDotNet" Version="11.2.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\TmEssentials\TmEssentials\TmEssentials.csproj" />
 	</ItemGroup>
 
 </Project>
