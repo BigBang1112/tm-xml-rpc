@@ -24,8 +24,7 @@ namespace TmXmlRpc
 
         public async Task<DateTimeOffset?> GetTimestampAsync()
         {
-            var request = new HttpRequestMessage(HttpMethod.Head, ReplayUrl);
-            var response = await MasterServer.Client.SendAsync(request);
+            var response = await MasterServer.Client.HeadAsync(ReplayUrl);
             response.EnsureSuccessStatusCode();
             return response.Content.Headers.LastModified;
         }
