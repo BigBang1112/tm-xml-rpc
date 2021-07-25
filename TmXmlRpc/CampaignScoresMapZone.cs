@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using YamlDotNet.Serialization;
 
 namespace TmXmlRpc
 {
@@ -10,11 +9,8 @@ namespace TmXmlRpc
         public byte U02;
         public byte U03;
 
-        [YamlIgnore]
         public string Zone { get; set; }
-        [YamlIgnore]
         public int[] Times { get; set; }
-        [YamlIgnore]
         public int[] TimesCount { get; set; }
         public CampaignScoresRecord[] Records { get; set; }
         public int TotalCount { get; set; }

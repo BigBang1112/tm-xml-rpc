@@ -1,7 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<Product>TmXmlRpc</Product>
+		<AssemblyName>TmXmlRpc</AssemblyName>
+		<AssemblyTitle>TmXmlRpc</AssemblyTitle>
+		<Authors>Petr Pivoňka (BigBang1112)</Authors>
+		<Description>A library that can request data from Trackmania's master servers more simply.</Description>
+		<Copyright>Copyright © Petr 'BigBang1112' Pivoňka</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+		<Version>1.0.0</Version>
+		<PackageReleaseNotes></PackageReleaseNotes>
+
+		<TargetFrameworks>net5.0</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageTags>trackmania, tm, xml-rpc, xml, master, server, masterserver</PackageTags>
+
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/BigBang1112/tm-xml-rpc</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/BigBang1112/tm-xml-rpc</PackageProjectUrl>
+
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+		<NoWarn>1591</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using YamlDotNet.Serialization;
 
 namespace TmXmlRpc
 {
     public class CampaignScoresMap
     {
-        [YamlIgnore]
         public string MapUid { get; set; }
         public Dictionary<string, CampaignScoresMapZone> Zones { get; set; }
 
