@@ -14,7 +14,7 @@ namespace TmXmlRpc
         {
             if (Nickname == null)
                 return Time.ToStringTm();
-            return $"{Time.ToStringTm()} by {Nickname}";
+            return $"{Time.ToStringTm()} by {Formatter.Deformat(Nickname)}";
         }
     }
 }
