@@ -17,7 +17,7 @@ namespace TmXmlRpc
         /// <summary>
         /// Constructs a new TMTurbo game specification for the request.
         /// </summary>
-        /// <param name="type">Type of the platform.</param>
+        /// <param name="platform">Type of the platform.</param>
         /// <param name="num">PC has servers num 1-3, PS4 and XB1 1-8.</param>
         public RequestGameTmTurbo(MasterServerPlatform platform = MasterServerPlatform.PC, int num = 3) : base("TMTurbo@nadeolabs")
         {
