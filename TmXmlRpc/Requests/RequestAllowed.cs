@@ -1,36 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using System.Xml;
 using System.Xml.Serialization;
 
-namespace TmXmlRpc.Requests
+namespace TmXmlRpc.Requests;
+
+[XmlRoot("root")]
+public class RequestAllowed : Request<RequestGameTmuf>
 {
-    [XmlRoot("root")]
-    public class RequestAllowed : Request<RequestGameTmuf>
+    public override string Name => "RequestAllowed";
+
+    public string RequestName { get; set; }
+    public string Uid { get; set; }
+
+    public RequestAllowed(RequestGameTmuf game, string requestName, string uid) : base(game, null, null)
     {
-        public override string Name => "RequestAllowed";
+        RequestName = requestName;
+        Uid = uid;
+    }
 
-        public string RequestName { get; set; }
-        public string Uid { get; set; }
+    internal RequestAllowed() : this(null, null, null)
+    {
 
-        public RequestAllowed(RequestGameTmuf game, string requestName, string uid) : base(game, null, null)
-        {
-            RequestName = requestName;
-            Uid = uid;
-        }
+    }
 
-        internal RequestAllowed() : this(null, null, null)
-        {
-
-        }
-
-        protected override void WriteParametersXml(XmlWriter writer)
-        {
-            writer.WriteElementString("r", RequestName);
-            writer.WriteElementString("uid", Uid);
-        }
+    protected override void WriteParametersXml(XmlWriter writer)
+    {
+        writer.WriteElementString("r", RequestName);
+        writer.WriteElementString("uid", Uid);
     }
 }

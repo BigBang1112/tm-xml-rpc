@@ -1,72 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
-namespace TmXmlRpc
+namespace TmXmlRpc;
+
+public class ResponseReader : BinaryReader
 {
-    public class ResponseReader : BinaryReader
+    public ResponseReader(Stream input) : base(input)
     {
-        public ResponseReader(Stream input) : base(input)
-        {
 
-        }
+    }
 
-        public override string ReadString()
-        {
-            return ReadString(ReadInt32());
-        }
+    public override string ReadString()
+    {
+        return ReadString(ReadInt32());
+    }
 
-        public string ReadString(int length)
-        {
-            return Encoding.UTF8.GetString(ReadBytes(length));
-        }
+    public string ReadString(int length)
+    {
+        return Encoding.UTF8.GetString(ReadBytes(length));
+    }
 
-        public int[] ReadArrayInt32(int length)
-        {
-            var array = new int[length];
+    public int[] ReadArrayInt32(int length)
+    {
+        var array = new int[length];
 
-            for (var i = 0; i < length; i++)
-                array[i] = ReadInt32();
+        for (var i = 0; i < length; i++)
+            array[i] = ReadInt32();
 
-            return array;
-        }
+        return array;
+    }
 
-        public int[] ReadArrayInt32()
-        {
-            return ReadArrayInt32(ReadInt32());
-        }
+    public int[] ReadArrayInt32()
+    {
+        return ReadArrayInt32(ReadInt32());
+    }
 
-        public byte[] ReadArrayByte(int length)
-        {
-            var array = new byte[length];
+    public byte[] ReadArrayByte(int length)
+    {
+        var array = new byte[length];
 
-            for (var i = 0; i < length; i++)
-                array[i] = ReadByte();
+        for (var i = 0; i < length; i++)
+            array[i] = ReadByte();
 
-            return array;
-        }
+        return array;
+    }
 
-        public byte[] ReadArrayByte()
-        {
-            return ReadArrayByte(ReadInt32());
-        }
+    public byte[] ReadArrayByte()
+    {
+        return ReadArrayByte(ReadInt32());
+    }
 
-        public string[] ReadArrayString(int length)
-        {
-            var array = new string[length];
+    public string[] ReadArrayString(int length)
+    {
+        var array = new string[length];
 
-            for (var i = 0; i < length; i++)
-                array[i] = ReadString();
+        for (var i = 0; i < length; i++)
+            array[i] = ReadString();
 
-            return array;
-        }
+        return array;
+    }
 
-        public string[] ReadArrayString()
-        {
-            return ReadArrayString(ReadInt32());
-        }
+    public string[] ReadArrayString()
+    {
+        return ReadArrayString(ReadInt32());
     }
 }

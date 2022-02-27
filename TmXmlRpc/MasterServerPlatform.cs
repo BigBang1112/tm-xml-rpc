@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace TmXmlRpc;
 
-namespace TmXmlRpc
+public enum MasterServerPlatform
 {
-    public enum MasterServerPlatform
-    {
-        PC,
-        PS4,
-        XB1,
-    }
+    PC,
+    PS4,
+    XB1,
 }

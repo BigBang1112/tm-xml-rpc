@@ -1,37 +1,34 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
-namespace TmXmlRpc
+namespace TmXmlRpc;
+
+public abstract class RequestGame
 {
-    public abstract class RequestGame
+    [XmlElement("name")]
+    public string Name { get; init; }
+    [XmlElement("version")]
+    public string Version { get; init; }
+    [XmlElement("distro")]
+    public string Distro { get; init; }
+    [XmlElement("lang")]
+    public string Lang { get; init; }
+
+    public abstract Uri MasterServerUri { get; }
+
+    protected RequestGame()
     {
-        [XmlElement("name")]
-        public string Name { get; init; }
-        [XmlElement("version")]
-        public string Version { get; init; }
-        [XmlElement("distro")]
-        public string Distro { get; init; }
-        [XmlElement("lang")]
-        public string Lang { get; init; }
+        Lang = "en";
+    }
 
-        public abstract Uri MasterServerUri { get; }
+    public RequestGame(string name, string version, string lang = "en") : this()
+    {
+        Name = name;
+        Version = version;
+        Lang = lang;
+    }
 
-        protected RequestGame()
-        {
-            Lang = "en";
-        }
-
-        public RequestGame(string name, string version, string lang = "en") : this()
-        {
-            Name = name;
-            Version = version;
-            Lang = lang;
-        }
-
-        public override string ToString()
-        {
-            return $"{Name} {Version} {Distro}";
-        }
+    public override string ToString()
+    {
+        return $"{Name} {Version} {Distro}";
     }
 }

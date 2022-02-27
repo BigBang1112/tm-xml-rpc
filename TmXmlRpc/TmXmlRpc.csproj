@@ -9,10 +9,11 @@
 		<Copyright>Copyright © Petr 'BigBang1112' Pivoňka</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 
-		<Version>1.0.1</Version>
+		<Version>1.1.0</Version>
 		<PackageReleaseNotes></PackageReleaseNotes>
+		<ImplicitUsings>enable</ImplicitUsings>
 
-		<TargetFrameworks>net5.0</TargetFrameworks>
+		<TargetFrameworks>net6.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageTags>trackmania, tm, xml-rpc, xml, master, server, masterserver</PackageTags>
 
@@ -26,8 +27,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Crc32.NET" Version="1.2.0" />
-		<PackageReference Include="TmEssentials" Version="1.0.0" />
+		<PackageReference Include="TmEssentials" Version="2.1.2" />
 	</ItemGroup>
 
 </Project>

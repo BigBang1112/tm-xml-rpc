@@ -6,27 +6,26 @@ using System.Text;
 using System.Threading.Tasks;
 using TmEssentials;
 
-namespace TmXmlRpc
+namespace TmXmlRpc;
+
+public class MapLeaderBoardPlayer
 {
-    public class MapLeaderBoardPlayer
+    public int Rank { get; set; }
+    public TimeInt32 Time { get; set; }
+    public string Login { get; set; }
+    public string Nickname { get; set; }
+    public string FileName { get; set; }
+    public string ReplayUrl { get; set; }
+
+    public override string ToString()
     {
-        public int Rank { get; set; }
-        public TimeSpan Time { get; set; }
-        public string Login { get; set; }
-        public string Nickname { get; set; }
-        public string FileName { get; set; }
-        public string ReplayUrl { get; set; }
+        return $"{Rank}) {Time} by {Nickname}";
+    }
 
-        public override string ToString()
-        {
-            return $"{Rank}) {Time.ToStringTm()} by {Nickname}";
-        }
-
-        public async Task<DateTimeOffset?> GetTimestampAsync()
-        {
-            var response = await MasterServer.Client.HeadAsync(ReplayUrl);
-            response.EnsureSuccessStatusCode();
-            return response.Content.Headers.LastModified;
-        }
+    public async Task<DateTimeOffset?> GetTimestampAsync()
+    {
+        var response = await MasterServer.Client.HeadAsync(ReplayUrl);
+        response.EnsureSuccessStatusCode();
+        return response.Content.Headers.LastModified;
     }
 }

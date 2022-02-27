@@ -1,20 +1,18 @@
-﻿using System;
-using TmEssentials;
+﻿using TmEssentials;
 
-namespace TmXmlRpc
+namespace TmXmlRpc;
+
+public struct CampaignScoresRecord
 {
-    public struct CampaignScoresRecord
-    {
-        public int Rank { get; set; }
-        public TimeSpan? Time { get; set; }
-        public string Login { get; set; }
-        public string Nickname { get; set; }
+    public int Rank { get; set; }
+    public TimeInt32? Time { get; set; }
+    public string Login { get; set; }
+    public string Nickname { get; set; }
 
-        public override string ToString()
-        {
-            if (Nickname == null)
-                return Time.ToStringTm();
-            return $"{Time.ToStringTm()} by {Formatter.Deformat(Nickname)}";
-        }
+    public override string ToString()
+    {
+        if (Nickname == null)
+            return Time.ToTmString();
+        return $"{Time} by {TextFormatter.Deformat(Nickname)}";
     }
 }

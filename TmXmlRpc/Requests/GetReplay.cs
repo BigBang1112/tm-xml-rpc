@@ -1,36 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using System.Xml;
 using System.Xml.Serialization;
 
-namespace TmXmlRpc.Requests
+namespace TmXmlRpc.Requests;
+
+[XmlRoot("root")]
+public class GetReplay : Request<RequestGameTmuf>
 {
-    [XmlRoot("root")]
-    public class GetReplay : Request<RequestGameTmuf>
+    public override string Name => "GetReplay";
+
+    public string MapUid { get; set; }
+    public string Login { get; set; }
+
+    public GetReplay(RequestGameTmuf game, string mapUid, string login) : base(game, null, null)
     {
-        public override string Name => "GetReplay";
+        MapUid = mapUid;
+        Login = login;
+    }
 
-        public string MapUid { get; set; }
-        public string Login { get; set; }
+    public GetReplay() : this(null, null, null)
+    {
 
-        public GetReplay(RequestGameTmuf game, string mapUid, string login) : base(game, null, null)
-        {
-            MapUid = mapUid;
-            Login = login;
-        }
+    }
 
-        public GetReplay() : this(null, null, null)
-        {
-
-        }
-
-        protected override void WriteParametersXml(XmlWriter writer)
-        {
-            writer.WriteElementString("uid", MapUid);
-            writer.WriteElementString("l", Login);
-        }
+    protected override void WriteParametersXml(XmlWriter writer)
+    {
+        writer.WriteElementString("uid", MapUid);
+        writer.WriteElementString("l", Login);
     }
 }
