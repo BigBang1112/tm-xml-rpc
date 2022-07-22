@@ -5,7 +5,7 @@
 
 A library that can request data from Trackmania's master servers more simply.
 
-Documentation sooner or later.
+### This project is in process of moving to [ManiaAPI](https://github.com/BigBang1112/maniaapi-net) set of API wrappers.
 
 ## Dependencies
 
